@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peminjam_perpustakaan_kelas_c/app/routes/app_pages.dart';
 
@@ -21,8 +20,9 @@ class BookView extends GetView<BookController> {
         itemBuilder: (context, index) {
           DataBook dataBook= state[index];
           return ListTile(
+            leading: Icon(Icons.book,color: Colors.lightBlue,),
             title: Text("${dataBook.judul}"),
-            subtitle: Text("Penulis ${dataBook.penulis}\n ${dataBook.penerbit} - ${dataBook.tahunTerbit}"),
+            subtitle: Text("Penulis ${dataBook.penulis}\n${dataBook.penerbit} - ${dataBook.tahunTerbit}"),
             trailing: ElevatedButton(onPressed: () => Get.toNamed(Routes.ADD_PEMINJAMAN, parameters: {
               'id': (dataBook.id?? 0).toString(), 'judul': dataBook.judul??""
             }), child:Text('Pinjam'),
@@ -30,7 +30,12 @@ class BookView extends GetView<BookController> {
           );
         },
         separatorBuilder: (context, index) => Divider(),
-      ) ,onLoading: Center(child: CupertinoActivityIndicator())),
+      ) ,onLoading: Center(child:CircularProgressIndicator())),
+
+
     );
+
+
   }
+
 }

@@ -16,9 +16,12 @@ class HomeView extends GetView<HomeController> {
       ),
       body:  Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 10,),
             ElevatedButton(
                 onPressed: () => Get.toNamed(Routes.BOOK), child: Text('Buku')),
+            SizedBox(height: 10,),
             ElevatedButton(
                 onPressed: () => Get.toNamed(Routes.PEMINJAMAN), child: Text('PEMINJAMAN'))
           ],

@@ -43,6 +43,7 @@ class AddPeminjamanController extends GetxController {
 
         if (response.statusCode == 201) {
           Get.back();
+          Get.snackbar("Berhasil", "Berhasil meminjam", backgroundColor: Colors.orange);
         } else {
           Get.snackbar("Sorry", "Gagal", backgroundColor: Colors.orange);
         }

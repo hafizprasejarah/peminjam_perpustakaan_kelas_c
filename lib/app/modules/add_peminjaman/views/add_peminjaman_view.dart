@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:peminjam_perpustakaan_kelas_c/app/data/provider/storage_provider.dart';
-
+import 'package:date_time_picker/date_time_picker.dart';
 import '../controllers/add_peminjaman_controller.dart';
 
 class AddPeminjamanView extends GetView<AddPeminjamanController> {
@@ -18,30 +17,40 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
           key: controller.formkey,
           child: Column(
             children: [
-              TextFormField(
+              DateTimePicker(
+                icon: Icon(Icons.date_range_rounded),
                 controller: controller.tglpinjamController,
-                decoration: InputDecoration(
-                  hintText: 'Tanggal Pinjam',
-                ),
+                dateMask: 'd MMM, yyyy',
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2100),
+                dateLabelText: 'Tanggal Peminjaman',
+                onChanged: (val) => print(val),
                 validator: (value) {
                   if (value!.length < 2) {
-                    return 'Masukan tanggal peminjaman';
+                    return 'Masukan Tanggal pengembalian';
                   }
                   return null;
                 },
+                onSaved: (val) => print(val),
               ),
-              TextFormField(
+              SizedBox(height: 20,),
+              DateTimePicker(
+                icon: Icon(Icons.date_range_rounded),
                 controller: controller.tglkembaliController,
-                decoration: InputDecoration(
-                  hintText: 'Tanggal Pengembaliam',
-                ),
+                dateMask: 'd MMM, yyyy',
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2100),
+                dateLabelText: 'Tanggal Pengembalian',
+                onChanged: (val) => print(val),
                 validator: (value) {
                   if (value!.length < 2) {
-                    return 'Masukan tanggal pengembalian';
+                    return 'Masukan Tanggal pengembalian';
                   }
                   return null;
                 },
+                onSaved: (val) => print(val),
               ),
+              SizedBox(height: 20,),
               Obx(() => controller.loading.value
                   ? CircularProgressIndicator()
                   : ElevatedButton(
@@ -52,5 +61,8 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
             ],
           )),
     );
+
   }
+
+
 }
